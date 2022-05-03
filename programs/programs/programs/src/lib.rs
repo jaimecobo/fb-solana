@@ -10,7 +10,9 @@ const USER_URL_LENGTH: usize = 255;
 pub mod programs {
     use super::*;
 
-    pub fn initialize(ctx: Context<Initialize>) -> Result<()> {
+    pub fn createState(
+        ctx: Context<CreateState>
+    ) -> Result<()> {
         Ok(())
     }
 }
