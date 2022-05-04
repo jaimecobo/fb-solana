@@ -18,6 +18,35 @@ pub mod programs {
         state.post_count = 0;
         Ok(())
     }
+
+    pub fn create_post(
+        ctx: Context<CreatePost>,
+        text: String,
+        poster_name: String,
+        poster_url: String,
+    ) -> Resullt {
+        let state = &mut ctx.accounts.state;
+
+        let post = &mut ctx.accounts.post;
+
+        post.authority = ctx.accounts.authority.key();
+
+        post.text = text;
+
+        post.poster_name = poster_name;
+
+        post.poster_url = poster_url;
+
+        post.comment_count = 0;
+
+        post.index = state.post_count;
+
+        post.post_time = ctx.accounts.clock.unix_timestamp;
+
+        state.post_count += 1;
+
+        Ok(())
+    }
 }
 
 #[derive(Accounts)]
