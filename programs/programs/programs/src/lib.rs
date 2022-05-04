@@ -13,6 +13,9 @@ pub mod programs {
     pub fn createState(
         ctx: Context<CreateState>
     ) -> Result<()> {
+        let state = &mut ctx.accounts.state;
+        state.authority = ctx.accounts.authority.key();
+        state.post_count = 0;
         Ok(())
     }
 }
